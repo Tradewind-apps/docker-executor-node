@@ -41,7 +41,10 @@ Promise.all([getConfig, getData]).then(function(values) {
         client.basePath = process.env.API_HOST
 
         let auth = client.authentications['pm_api_bearer']
-        auth.accessToken = process.env.API_TOKEN
+        
+        if (auth) {
+            auth.accessToken = process.env.API_TOKEN   
+        }
     }
 
     const return_value = script.run(data, config, api)
